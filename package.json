@@ -6,7 +6,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "publish:main": "yarn clear-react-native-cache && eas update",
+    "clear-react-native-cache": "rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-*"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
