@@ -1,10 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { router} from 'expo-router'
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+
+import {RPH, RPW} from '../modules/dimensions'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Index !</Text>
+      <TouchableOpacity onPress={()=>router.push('/tab1')}>
+        <Text>Go to Tabs</Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
