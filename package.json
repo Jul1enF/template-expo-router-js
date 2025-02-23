@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "publish:main": "yarn clear-react-native-cache && eas update",
-    "clear-react-native-cache": "rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-*"
+    "clear-react-native-cache": "rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-*",
+    "clear-expo-cache": "rm -rf node_modules && yarn cache clean && yarn && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-map-*"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
