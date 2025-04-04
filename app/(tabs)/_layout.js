@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "../../components/Header";
 import { RPH, RPW} from "../../modules/dimensions"
+import { mainStyle } from "../../styles/mainStyle";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
@@ -15,7 +16,7 @@ export default function TabsLayout() {
       tabBarIcon: ({ focused }) => {
         let iconName = '';
         let color = ""
-        color = focused ? 'white' : "grey"
+        color = focused ? mainStyle.strongWhite : "grey"
 
         if (route.name === '(tab1)') {
           iconName = 'square-outline';
@@ -27,12 +28,12 @@ export default function TabsLayout() {
       },
 
       tabBarIconStyle : {width : "100%", height : RPH(4.8)},
-      tabBarActiveTintColor: 'white',
+      tabBarActiveTintColor: mainStyle.strongWhite,
       tabBarInactiveTintColor: 'grey',
       tabBarLabelStyle: { fontSize: RPW(4.2), fontWeight : "500" },
       tabBarBackground: () => (
         <LinearGradient
-          colors={['red', 'black']}
+          colors={[mainStyle.gradientRed, mainStyle.gardientBlack]}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
           style={{ height: 150 }}

@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../reducers/user";
 import { router, usePathname } from "expo-router";
 import { RPH, RPW } from "../modules/dimensions"
+import { mainStyle } from "../styles/mainStyle";
 
 
 const statusHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 0
@@ -90,7 +91,7 @@ export default function Header() {
         <View style={styles.body}>
             <StatusBar translucent={true} backgroundColor="transparent" barStyle="light" />
             <LinearGradient style={styles.header}
-                colors={['red', 'black']}
+                colors={[mainStyle.gradientRed, mainStyle.gardientBlack]}
                 locations={[0, 0.75]}
                 start={{ x: 0, y: 0.5 }}
                 end={{ x: 1, y: 0.5 }}
@@ -120,7 +121,7 @@ export default function Header() {
                 onBackdropPress={() => setSearchVisible(!searchVisible)}
             >
                 <LinearGradient style={styles.searchContainer}
-                    colors={['red', 'black']}
+                    colors={[mainStyle.gradientRed, mainStyle.gardientBlack]}
                     locations={[0, 0.9]}
                     start={{ x: 0, y: 0.5 }}
                     end={{ x: 1, y: 0.5 }}
@@ -132,7 +133,7 @@ export default function Header() {
                             onChangeText={(e) => setSearchText(e)}
                             value={searchText}
                             returnKeyType="send"
-                            placeholderTextColor={"rgba(255,255,255,0.85)"}
+                            placeholderTextColor={mainStyle.placeholderColor}
                             autoCapitalize="none"
                             autoCorrect={false}
                             onSubmitEditing={() => submitSearch()}
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: RPW(9.3),
-        color: "white",
+        color: mainStyle.strongWhite,
         letterSpacing: 1.5,
         fontWeight: "600",
     },
@@ -226,7 +227,7 @@ const styles = StyleSheet.create({
         paddingRight: RPW(4),
     },
     icon: {
-        color: "white",
+        color: mainStyle.strongWhite,
     },
     headerLigne: {
         borderBottomColor: "#878787",
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
         paddingRight: RPW(4),
     },
     searchInputContainer: {
-        borderBottomColor: "white",
+        borderBottomColor: mainStyle.strongWhite,
         borderBottomWidth: 0.5,
         width: RPW(50),
         paddingBottom: RPH(1),
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     search: {
-        color: "white",
+        color: mainStyle.strongWhite,
         fontSize: RPH(2.3),
         fontWeight: "500",
         width: "90%",
