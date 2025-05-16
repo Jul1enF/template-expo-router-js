@@ -7,8 +7,8 @@ import { mainStyle } from '../styles/mainStyle';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Index !</Text>
+    <View style={styles.body}>
+      <Text style={styles.pageTitle}>Index !</Text>
       <TouchableOpacity onPress={()=>router.push('/tab1')}>
         <Text>Go to Tabs</Text>
       </TouchableOpacity>
@@ -18,10 +18,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  body: {
     flex: 1,
     backgroundColor: mainStyle.strongWhite,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  pageTitle: {
+    fontSize : mainStyle.pageTitleSize,
   },
 });

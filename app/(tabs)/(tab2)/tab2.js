@@ -5,17 +5,20 @@ import { mainStyle } from '../../../styles/mainStyle';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Tab 2 !</Text>
+    <View style={styles.body}>
+      <Text style={styles.pageTitle}>Tab 2 !</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  body: {
     flex: 1,
     backgroundColor: mainStyle.strongWhite,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  pageTitle: {
+    fontSize : mainStyle.pageTitleSize,
   },
 });

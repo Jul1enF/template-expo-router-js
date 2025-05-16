@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
         color: mainStyle.strongWhite,
     },
     headerLigne: {
-        borderBottomColor: "#878787",
+        borderBottomColor: mainStyle.lightGrey,
         borderBottomWidth: RPH(0.2)
     },
     searchContainer: {
@@ -269,14 +269,14 @@ const styles = StyleSheet.create({
     modalBody: {
         height: RPH(75.6),
         width: RPW(80),
-        backgroundColor: "#e3e3e3",
+        backgroundColor: mainStyle.lightGrey,
         position: "absolute",
         top: RPH(13.9) - statusHeight,
     },
     modalBody2: {
         height: RPH(69.5),
         width: RPW(80),
-        backgroundColor: "#e3e3e3",
+        backgroundColor: mainStyle.lightGrey,
         position: "absolute",
         top: RPH(20) - statusHeight,
     },
