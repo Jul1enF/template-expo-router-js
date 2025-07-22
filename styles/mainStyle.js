@@ -1,4 +1,4 @@
-import {RPW, RPH} from "../modules/dimensions"
+import {RPW, RPH, phoneDevice} from "../modules/dimensions"
 
 export const mainStyle = {
 
@@ -10,6 +10,9 @@ lightGrey : "rgb(211, 211, 211)",
 placeholderColor : "rgba(255,255,255,0.85)",
 
 // Tailles principales de l'app
-pageTitleSize : RPW(6),
+headerHeight : phoneDevice ? RPH(14) : 130,
+tabBarHeight : phoneDevice ? RPH(10.5) : 95,
+
+pageTitleSize : phoneDevice ? RPW(6) : 50,
 
 }

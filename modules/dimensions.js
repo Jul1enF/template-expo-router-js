@@ -20,5 +20,7 @@ const RPW = (percentage) => {
     return (percentage / 100) * (screenWidth);
 };
 
+const phoneDevice = RPW(1) <= 6 ? true : false
 
-module.exports = { RPH, RPW }
+
+module.exports = { RPH, RPW, phoneDevice }

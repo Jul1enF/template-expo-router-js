@@ -1,14 +1,15 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform, StatusBar } from "react-native";
+import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Modal from "react-native-modal"
 
-import { useState, useEffect} from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../reducers/user";
-import { router, usePathname } from "expo-router";
-import { RPH, RPW } from "../modules/dimensions"
+import { router } from "expo-router";
+import { RPH, RPW, phoneDevice } from "../modules/dimensions"
 import { mainStyle } from "../styles/mainStyle";
 
 
@@ -23,18 +24,13 @@ export default function Header() {
 
 
 
-    // useEffect et variables pour ajuster la taille de la modal si l'on est sur une page avec un second header
-    const [articlePage, setArticlePage] = useState(false)
-    const pathName = usePathname()
 
-    useEffect(() => {
-        if (pathName.includes('-article') || pathName.includes('notification-page')) {
-            setArticlePage(true)
-        }
-        else {
-            setArticlePage(false)
-        }
-    }, [pathName])
+    // Listener de la hauteur de l'écran pour taille du menu (quand changement d'orientation tablette)
+    const { height: screenHeight } = useSafeAreaFrame()
+    const menuHeight = screenHeight - mainStyle.headerHeight - mainStyle.tabBarHeight
+
+    const statusBarOffset = Platform.OS === 'android' ? useSafeAreaInsets().top : 0
+    const menuOffsetTop = mainStyle.headerHeight - statusBarOffset
 
 
 
@@ -88,7 +84,7 @@ export default function Header() {
 
 
     return (
-        <View style={styles.body}>
+        <View style={styles.body} >
             <StatusBar translucent={true} backgroundColor="transparent" barStyle="light" />
             <LinearGradient style={styles.header}
                 colors={[mainStyle.gradientRed, mainStyle.gardientBlack]}
@@ -97,7 +93,7 @@ export default function Header() {
                 end={{ x: 1, y: 0.5 }}
             >
                 <View style={styles.menuIconContainer}>
-                    <FontAwesome name="navicon" style={styles.icon} size={RPW(7)} onPress={() => setMenuVisible(!menuVisible)} />
+                    <FontAwesome name="navicon" style={styles.icon} size={phoneDevice ? RPW(7) : 38} onPress={() => setMenuVisible(!menuVisible)} />
                 </View>
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>
@@ -105,7 +101,7 @@ export default function Header() {
                     </Text>
                 </View>
                 <View style={styles.searchIconContainer}>
-                    <FontAwesome6 name="magnifying-glass" style={styles.icon} size={RPW(6.5)} onPress={() => setSearchVisible(!searchVisible)} />
+                    <FontAwesome6 name="magnifying-glass" style={styles.icon} size={phoneDevice ? RPW(6.5) : 38} onPress={() => setSearchVisible(!searchVisible)} />
                 </View>
             </LinearGradient>
             <View style={styles.headerLigne}></View>
@@ -138,9 +134,9 @@ export default function Header() {
                             autoCorrect={false}
                             onSubmitEditing={() => submitSearch()}
                         ></TextInput>
-                        <FontAwesome6 name="magnifying-glass" style={styles.icon} size={RPH(1.9)} onPress={() => submitSearch()} />
+                        <FontAwesome6 name="magnifying-glass" style={styles.icon} size={phoneDevice ? RPH(1.9) : 25} onPress={() => submitSearch()} />
                     </View>
-                    <FontAwesome6 name="chevron-up" style={styles.icon} size={RPH(2.8)} onPress={() => setSearchVisible(!searchVisible)} />
+                    <FontAwesome6 name="chevron-up" style={styles.icon} size={phoneDevice ? RPH(2.8) : 28} onPress={() => setSearchVisible(!searchVisible)} />
 
                 </LinearGradient>
             </Modal>
@@ -155,7 +151,7 @@ export default function Header() {
                 onBackButtonPress={() => setMenuVisible(!menuVisible)}
                 onBackdropPress={() => setMenuVisible(!menuVisible)}
             >
-                <View style={!articlePage ? styles.modalBody : styles.modalBody2}>
+                <View style={[styles.modalBody, { height: menuHeight, top : menuOffsetTop }]}>
                     {/* <TouchableOpacity style={styles.linkContainer} activeOpacity={0.6} onPress={() => {
                         setMenuVisible(false)
                         router.navigate('/home')
@@ -190,12 +186,12 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     body: {
-        height: RPH(14),
-        width: RPW(100),
+        height: mainStyle.headerHeight,
+        width: "100%",
     },
     header: {
         flex: 1,
-        paddingTop: RPH(4) - (statusHeight / 2),
+        paddingTop: phoneDevice ? RPH(4) - (statusHeight / 2) : 30,
         justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
@@ -205,7 +201,7 @@ const styles = StyleSheet.create({
         height: "100%",
         alignItems: "flex-start",
         justifyContent: "center",
-        paddingLeft: RPW(4),
+        paddingLeft: phoneDevice ? RPW(4) : 30,
     },
     titleContainer: {
         width: "70%",
@@ -214,9 +210,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     title: {
-        fontSize: RPW(9.3),
+        fontSize: phoneDevice ? RPW(9.3) : 55,
         color: mainStyle.strongWhite,
-        letterSpacing: 1.5,
+        letterSpacing: phoneDevice ? 1.5 : 4,
         fontWeight: "600",
     },
     searchIconContainer: {
@@ -224,40 +220,40 @@ const styles = StyleSheet.create({
         height: "100%",
         alignItems: "flex-end",
         justifyContent: "center",
-        paddingRight: RPW(4),
+        paddingRight: phoneDevice ? RPW(4) : 30,
     },
     icon: {
         color: mainStyle.strongWhite,
     },
     headerLigne: {
         borderBottomColor: mainStyle.lightGrey,
-        borderBottomWidth: RPH(0.2)
+        borderBottomWidth: phoneDevice ? RPH(0.2) : 1,
     },
     searchContainer: {
         position: "absolute",
-        top: RPH(14) - statusHeight,
-        height: RPH(6),
-        width: RPW(100),
+        top: mainStyle.headerHeight - statusHeight,
+        height: phoneDevice ? RPH(6) : 68,
+        width: "100%",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingLeft: RPW(4),
-        paddingRight: RPW(4),
+        paddingLeft: phoneDevice ? RPW(4) : 30,
+        paddingRight: phoneDevice ? RPW(4) : 30,
     },
     searchInputContainer: {
         borderBottomColor: mainStyle.strongWhite,
-        borderBottomWidth: 0.5,
-        width: RPW(50),
-        paddingBottom: RPH(1),
-        paddingRight: RPW(1),
-        marginTop: RPH(0.5),
+        borderBottomWidth: phoneDevice ? 0.5 : 1,
+        width: "50%",
+        paddingBottom: phoneDevice ? RPH(1) : 8,
+        paddingRight: phoneDevice ? RPW(1) : 8,
+        marginTop: phoneDevice ? RPH(0.5) : 4,
         flexDirection: 'row',
         justifyContent: "space-between",
         alignItems: "center",
     },
     search: {
         color: mainStyle.strongWhite,
-        fontSize: RPH(2.3),
+        fontSize: phoneDevice ? RPH(2.3) : 26,
         fontWeight: "500",
         width: "90%",
     },
@@ -267,21 +263,12 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     modalBody: {
-        height: RPH(75.6),
-        width: RPW(80),
+        width: "80%",
         backgroundColor: mainStyle.lightGrey,
         position: "absolute",
-        top: RPH(13.9) - statusHeight,
-    },
-    modalBody2: {
-        height: RPH(69.5),
-        width: RPW(80),
-        backgroundColor: mainStyle.lightGrey,
-        position: "absolute",
-        top: RPH(20) - statusHeight,
     },
     linkContainer: {
-        height: RPH(11.5),
+        height: phoneDevice ? RPH(11.5) : 120,
         borderTopWidth: 0.5,
         borderTopColor: "#19290a",
         justifyContent: "center",
@@ -289,7 +276,7 @@ const styles = StyleSheet.create({
     },
     link: {
         color: "#19290a",
-        fontSize: RPW(6.3),
+        fontSize: phoneDevice ? RPW(6.3) : 40,
         fontWeight: "300"
     },
 })

@@ -2,7 +2,7 @@ import { Tabs } from "expo-router";
 import { Platform } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Header from "../../components/Header";
-import { RPH, RPW} from "../../modules/dimensions"
+import { RPH, RPW, phoneDevice} from "../../modules/dimensions"
 import { mainStyle } from "../../styles/mainStyle";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
@@ -24,13 +24,13 @@ export default function TabsLayout() {
           iconName = 'triangle-outline';
         }
 
-        return <MaterialCommunityIcons name={iconName} size={RPH(3.8)} color={color} />;
+        return <MaterialCommunityIcons name={iconName} size={phoneDevice ? RPH(3.8) : 28} color={color} />;
       },
 
-      tabBarIconStyle : {width : "100%", height : RPH(4.8)},
+      tabBarIconStyle : {width : "100%", height : phoneDevice ? RPH(4.8) : 40},
       tabBarActiveTintColor: mainStyle.strongWhite,
       tabBarInactiveTintColor: 'grey',
-      tabBarLabelStyle: { fontSize: RPW(4.2), fontWeight : "500" },
+      tabBarLabelStyle: { fontSize: phoneDevice ? RPW(4.2) : 25, fontWeight : "500" },
       tabBarBackground: () => (
         <LinearGradient
           colors={[mainStyle.gradientRed, mainStyle.gardientBlack]}
@@ -39,7 +39,8 @@ export default function TabsLayout() {
           style={{ height: 150 }}
         ></LinearGradient>
       ),
-      tabBarStyle: { height: RPH(10.5), paddingBottom: RPH(2), paddingTop: RPH(0.5), width : RPW(100) },
+      tabBarStyle: { height: mainStyle.tabBarHeight, paddingBottom: phoneDevice ? RPH(2) : 0, paddingTop: phoneDevice ? RPH(0.5) : 3, width : "100%" },
+      tabBarLabelPosition : "below-icon",
       // Build / KeyboardAwareScrollView
       // tabBarHideOnKeyboard : Platform.OS === 'ios' ? true : false,
       // Expo Go / KeyboardAvoidingView
