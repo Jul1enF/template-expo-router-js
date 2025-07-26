@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import {RPH, RPW} from '../../../modules/dimensions'
-import { mainStyle } from '../../../styles/mainStyle';
+import { appStyle } from '../../../styles/appStyle';
 
 export default function App() {
   return (
@@ -14,11 +14,11 @@ export default function App() {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: mainStyle.strongWhite,
+    backgroundColor: appStyle.strongWhite,
     alignItems: 'center',
     justifyContent: 'center',
   },
   pageTitle: {
-    fontSize : mainStyle.pageTitleSize,
+    fontSize : appStyle.pageTitleSize,
   },
 });

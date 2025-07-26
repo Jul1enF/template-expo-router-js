@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../reducers/user";
 import { router } from "expo-router";
 import { RPH, RPW, phoneDevice } from "../modules/dimensions"
-import { mainStyle } from "../styles/mainStyle";
+import { appStyle } from "../styles/appStyle";
 
 
 const statusHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 0
@@ -27,10 +27,10 @@ export default function Header() {
 
     // Listener de la hauteur de l'écran pour taille du menu (quand changement d'orientation tablette)
     const { height: screenHeight } = useSafeAreaFrame()
-    const menuHeight = screenHeight - mainStyle.headerHeight - mainStyle.tabBarHeight
+    const menuHeight = screenHeight - appStyle.headerHeight - appStyle.tabBarHeight
 
     const statusBarOffset = Platform.OS === 'android' ? useSafeAreaInsets().top : 0
-    const menuOffsetTop = mainStyle.headerHeight - statusBarOffset
+    const menuOffsetTop = appStyle.headerHeight - statusBarOffset
 
 
 
@@ -87,7 +87,7 @@ export default function Header() {
         <View style={styles.body} >
             <StatusBar translucent={true} backgroundColor="transparent" barStyle="light" />
             <LinearGradient style={styles.header}
-                colors={[mainStyle.gradientRed, mainStyle.gardientBlack]}
+                colors={[appStyle.gradientRed, appStyle.gardientBlack]}
                 locations={[0, 0.75]}
                 start={{ x: 0, y: 0.5 }}
                 end={{ x: 1, y: 0.5 }}
@@ -117,7 +117,7 @@ export default function Header() {
                 onBackdropPress={() => setSearchVisible(!searchVisible)}
             >
                 <LinearGradient style={styles.searchContainer}
-                    colors={[mainStyle.gradientRed, mainStyle.gardientBlack]}
+                    colors={[appStyle.gradientRed, appStyle.gardientBlack]}
                     locations={[0, 0.9]}
                     start={{ x: 0, y: 0.5 }}
                     end={{ x: 1, y: 0.5 }}
@@ -129,7 +129,7 @@ export default function Header() {
                             onChangeText={(e) => setSearchText(e)}
                             value={searchText}
                             returnKeyType="send"
-                            placeholderTextColor={mainStyle.placeholderColor}
+                            placeholderTextColor={appStyle.placeholderColor}
                             autoCapitalize="none"
                             autoCorrect={false}
                             onSubmitEditing={() => submitSearch()}
@@ -186,7 +186,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     body: {
-        height: mainStyle.headerHeight,
+        height: appStyle.headerHeight,
         width: "100%",
     },
     header: {
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: phoneDevice ? RPW(9.3) : 55,
-        color: mainStyle.strongWhite,
+        color: appStyle.strongWhite,
         letterSpacing: phoneDevice ? 1.5 : 4,
         fontWeight: "600",
     },
@@ -223,15 +223,15 @@ const styles = StyleSheet.create({
         paddingRight: phoneDevice ? RPW(4) : 30,
     },
     icon: {
-        color: mainStyle.strongWhite,
+        color: appStyle.strongWhite,
     },
     headerLigne: {
-        borderBottomColor: mainStyle.lightGrey,
+        borderBottomColor: appStyle.lightGrey,
         borderBottomWidth: phoneDevice ? RPH(0.2) : 1,
     },
     searchContainer: {
         position: "absolute",
-        top: mainStyle.headerHeight - statusHeight,
+        top: appStyle.headerHeight - statusHeight,
         height: phoneDevice ? RPH(6) : 68,
         width: "100%",
         flexDirection: "row",
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
         paddingRight: phoneDevice ? RPW(4) : 30,
     },
     searchInputContainer: {
-        borderBottomColor: mainStyle.strongWhite,
+        borderBottomColor: appStyle.strongWhite,
         borderBottomWidth: phoneDevice ? 0.5 : 1,
         width: "50%",
         paddingBottom: phoneDevice ? RPH(1) : 8,
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     search: {
-        color: mainStyle.strongWhite,
+        color: appStyle.strongWhite,
         fontSize: phoneDevice ? RPH(2.3) : 26,
         fontWeight: "500",
         width: "90%",
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     },
     modalBody: {
         width: "80%",
-        backgroundColor: mainStyle.lightGrey,
+        backgroundColor: appStyle.lightGrey,
         position: "absolute",
     },
     linkContainer: {
