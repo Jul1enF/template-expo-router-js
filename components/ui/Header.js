@@ -1,5 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform, StatusBar } from "react-native";
 import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
+import Constants from 'expo-constants';
+import { redirectToStores } from "../../utils/redirectToStores"
+
 import { LinearGradient } from "expo-linear-gradient";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -7,30 +10,30 @@ import Modal from "react-native-modal"
 
 import { useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../reducers/user";
+import { logout } from "../../reducers/user";
 import { router } from "expo-router";
-import { RPH, RPW, phoneDevice } from "../modules/dimensions"
-import { appStyle } from "../styles/appStyle";
+import { RPH, RPW, phoneDevice } from "../../utils/dimensions"
+import { appStyle } from "../../styles/appStyle";
 
 
-const statusHeight = Platform.OS === 'android' ? StatusBar.currentHeight : 0
 
-export default function Header() {
+export default function Header(props) {
 
     const [menuVisible, setMenuVisible] = useState(false)
     const user = useSelector((state) => state.user.value)
     const dispatch = useDispatch()
-    const url = process.env.EXPO_PUBLIC_BACK_ADDRESS
 
 
 
+    // Hook for the height of the screen (for tablets orientation changes) and detection of android insetTop to use as offset
+    const { height: screenHeight, width: screenWidth } = useSafeAreaFrame()
+    const tabbarPaddingBottom = Platform.OS === "ios" ? useSafeAreaInsets().bottom / 2 : useSafeAreaInsets().bottom
 
-    // Listener de la hauteur de l'écran pour taille du menu (quand changement d'orientation tablette)
-    const { height: screenHeight } = useSafeAreaFrame()
-    const menuHeight = screenHeight - appStyle.headerHeight - appStyle.tabBarHeight
+    const statusBarOffset = Platform.OS === "ios" ? Constants.statusBarHeight : useSafeAreaInsets().top
 
-    const statusBarOffset = Platform.OS === 'android' ? useSafeAreaInsets().top : 0
-    const menuOffsetTop = appStyle.headerHeight - statusBarOffset
+    const modalOffsetTop = Platform.OS === "ios" ? appStyle.headerHeight + statusBarOffset : appStyle.headerHeight
+
+    const modalHeight = screenHeight - appStyle.headerHeight - statusBarOffset - appStyle.tabBarHeight - tabbarPaddingBottom
 
 
 
@@ -84,9 +87,9 @@ export default function Header() {
 
 
     return (
-        <View style={styles.body} >
+        <View >
             <StatusBar translucent={true} backgroundColor="transparent" barStyle="light" />
-            <LinearGradient style={styles.header}
+            <LinearGradient style={[styles.header, { height: appStyle.headerHeight + statusBarOffset, paddingTop: statusBarOffset }]}
                 colors={[appStyle.gradientRed, appStyle.gardientBlack]}
                 locations={[0, 0.75]}
                 start={{ x: 0, y: 0.5 }}
@@ -107,6 +110,8 @@ export default function Header() {
             <View style={styles.headerLigne}></View>
 
 
+
+
             <Modal
                 isVisible={searchVisible}
                 style={styles.modal}
@@ -115,8 +120,10 @@ export default function Header() {
                 animationOut="fadeOutUp"
                 onBackButtonPress={() => setSearchVisible(!searchVisible)}
                 onBackdropPress={() => setSearchVisible(!searchVisible)}
+                deviceWidth={screenWidth}
+                deviceHeight={screenHeight}
             >
-                <LinearGradient style={styles.searchContainer}
+                <LinearGradient style={[styles.searchContainer, {top: modalOffsetTop + 0.5}]}
                     colors={[appStyle.gradientRed, appStyle.gardientBlack]}
                     locations={[0, 0.9]}
                     start={{ x: 0, y: 0.5 }}
@@ -124,7 +131,7 @@ export default function Header() {
                 >
                     <View style={styles.searchInputContainer}>
                         <TextInput
-                            style={styles.search}
+                            style={[styles.search,{ color : appStyle.darkWhite}]}
                             placeholder="Rechercher..."
                             onChangeText={(e) => setSearchText(e)}
                             value={searchText}
@@ -134,12 +141,14 @@ export default function Header() {
                             autoCorrect={false}
                             onSubmitEditing={() => submitSearch()}
                         ></TextInput>
-                        <FontAwesome6 name="magnifying-glass" style={styles.icon} size={phoneDevice ? RPH(1.9) : 25} onPress={() => submitSearch()} />
+                        <FontAwesome6 name="magnifying-glass" style={styles.icon} size={phoneDevice ? RPW(4.5) : 25} onPress={() => submitSearch()} />
                     </View>
-                    <FontAwesome6 name="chevron-up" style={styles.icon} size={phoneDevice ? RPH(2.8) : 28} onPress={() => setSearchVisible(!searchVisible)} />
+                    <FontAwesome6 name="chevron-up" style={styles.icon} size={phoneDevice ? RPW(6) : 28} onPress={() => setSearchVisible(!searchVisible)} />
 
                 </LinearGradient>
             </Modal>
+
+
 
 
             <Modal
@@ -150,8 +159,10 @@ export default function Header() {
                 animationOut="slideOutLeft"
                 onBackButtonPress={() => setMenuVisible(!menuVisible)}
                 onBackdropPress={() => setMenuVisible(!menuVisible)}
+                deviceWidth={screenWidth}
+                deviceHeight={screenHeight}
             >
-                <View style={[styles.modalBody, { height: menuHeight, top : menuOffsetTop }]}>
+                <View style={[styles.menu, {  height: modalHeight, top: modalOffsetTop + 0.5}]}>
                     {/* <TouchableOpacity style={styles.linkContainer} activeOpacity={0.6} onPress={() => {
                         setMenuVisible(false)
                         router.navigate('/home')
@@ -180,18 +191,42 @@ export default function Header() {
                     </TouchableOpacity>}
                 </View>
             </Modal>
+
+
+
+            <Modal
+                isVisible={true}
+                style={styles.modal}
+                deviceWidth={screenWidth}
+                deviceHeight={screenHeight}
+                statusBarTranslucent={true}
+                backdropColor="transparent"
+                animationIn="slideInLeft"
+                animationOut="slideOutLeft"
+            >
+                <View style={{ width: "100%", height: modalHeight, top: modalOffsetTop + 0.5, backgroundColor: appStyle.darkWhite, paddingTop: appStyle.pagePaddingTop }}>
+                    <Text style={{ ...appStyle.pageSubtitle, textAlign: "center" }}>
+                        Version de l'application obsolète
+                    </Text>
+                    <Text style={{ ...appStyle.regularText, marginTop: phoneDevice ? RPW(5) : 20, textAlign: "center", lineHeight: phoneDevice ? RPW(6) : 40 }}>
+                        Mettez à jour votre application pour continuer à utiliser Sport Amat !
+                    </Text>
+                    <TouchableOpacity style={{ width : "auto", alignSelf : "center", borderBottomWidth: 2, borderBottomColor: appStyle.strongBlack }} onPress={() => redirectToStores()}>
+                        <Text style={[styles.obsoleteText, {fontWeight : "600"}]}>
+                            Mettre à jour
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+            </Modal>
+
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    body: {
-        height: appStyle.headerHeight,
-        width: "100%",
-    },
     header: {
-        flex: 1,
-        paddingTop: phoneDevice ? RPH(4) - (statusHeight / 2) : 30,
         justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
@@ -210,8 +245,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     title: {
-        fontSize: phoneDevice ? RPW(9.3) : 55,
-        color: appStyle.strongWhite,
+        fontSize: phoneDevice ? RPW(8) : 55,
+        color: appStyle.darkWhite,
         letterSpacing: phoneDevice ? 1.5 : 4,
         fontWeight: "600",
     },
@@ -223,16 +258,15 @@ const styles = StyleSheet.create({
         paddingRight: phoneDevice ? RPW(4) : 30,
     },
     icon: {
-        color: appStyle.strongWhite,
+        color: appStyle.darkWhite,
     },
     headerLigne: {
         borderBottomColor: appStyle.lightGrey,
-        borderBottomWidth: phoneDevice ? RPH(0.2) : 1,
+        borderBottomWidth: phoneDevice ? 0.5 : 1,
     },
     searchContainer: {
         position: "absolute",
-        top: appStyle.headerHeight - statusHeight,
-        height: phoneDevice ? RPH(6) : 68,
+        height: phoneDevice ? RPW(12) : 68,
         width: "100%",
         flexDirection: "row",
         alignItems: "center",
@@ -241,20 +275,18 @@ const styles = StyleSheet.create({
         paddingRight: phoneDevice ? RPW(4) : 30,
     },
     searchInputContainer: {
-        borderBottomColor: appStyle.strongWhite,
+        borderBottomColor: appStyle.darkWhite,
         borderBottomWidth: phoneDevice ? 0.5 : 1,
         width: "50%",
-        paddingBottom: phoneDevice ? RPH(1) : 8,
+        paddingBottom: phoneDevice ? RPW(2) : 8,
         paddingRight: phoneDevice ? RPW(1) : 8,
-        marginTop: phoneDevice ? RPH(0.5) : 4,
+        marginTop: phoneDevice ? RPW(1) : 4,
         flexDirection: 'row',
         justifyContent: "space-between",
         alignItems: "center",
     },
     search: {
-        color: appStyle.strongWhite,
-        fontSize: phoneDevice ? RPH(2.3) : 26,
-        fontWeight: "500",
+        ...appStyle.regularText,
         width: "90%",
     },
     modal: {
@@ -262,7 +294,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         margin: 0,
     },
-    modalBody: {
+    menu: {
         width: "80%",
         backgroundColor: appStyle.lightGrey,
         position: "absolute",
@@ -270,13 +302,20 @@ const styles = StyleSheet.create({
     linkContainer: {
         height: phoneDevice ? RPH(11.5) : 120,
         borderTopWidth: 0.5,
-        borderTopColor: "#19290a",
+        borderTopColor: appStyle.strongBlack,
         justifyContent: "center",
         alignItems: "center",
     },
     link: {
-        color: "#19290a",
+        color: appStyle.strongBlack,
         fontSize: phoneDevice ? RPW(6.3) : 40,
         fontWeight: "300"
     },
+      obsoleteText: {
+            ...appStyle.regularText,
+            marginTop: phoneDevice ? RPW(5) : 20,
+            textAlign: "center",
+            lineHeight: phoneDevice ? RPW(6) : 40,
+            width : "auto"
+        }
 })

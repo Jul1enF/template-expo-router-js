@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import {RPH, RPW} from '../../../modules/dimensions'
+import {RPH, RPW} from '../../../utils/dimensions'
 import { appStyle } from '../../../styles/appStyle';
 
 export default function App() {
@@ -14,7 +14,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: appStyle.strongWhite,
+    backgroundColor: appStyle.darkWhite,
     alignItems: 'center',
     justifyContent: 'center',
   },

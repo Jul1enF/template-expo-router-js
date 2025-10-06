@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import * as ScreenOrientation from 'expo-screen-orientation'
-import { phoneDevice } from "../modules/dimensions"
+import { phoneDevice } from "../utils/dimensions"
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
