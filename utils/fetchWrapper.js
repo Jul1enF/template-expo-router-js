@@ -23,6 +23,7 @@ export const fetchWrapper = async (ref, fetchFn, onSuccess = () => { }, setError
             }
         }
     } catch (err) {
+        console.log("FETCH ERROR :", err)
         if (typeof setError === 'function') {
             setError("Erreur : Problème de connexion")
             setTimeout(() => setError(''), 5000)
