@@ -30,3 +30,7 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# android and ios files
+android/
+ios/
