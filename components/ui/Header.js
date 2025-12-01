@@ -90,7 +90,7 @@ export default function Header(props) {
         <View >
             <StatusBar translucent={true} backgroundColor="transparent" barStyle="light" />
             <LinearGradient style={[styles.header, { height: appStyle.headerHeight + statusBarOffset, paddingTop: statusBarOffset }]}
-                colors={[appStyle.gradientRed, appStyle.gardientBlack]}
+                colors={[appStyle.strongRed, appStyle.strongBlack]}
                 locations={[0, 0.75]}
                 start={{ x: 0, y: 0.5 }}
                 end={{ x: 1, y: 0.5 }}
@@ -195,7 +195,7 @@ export default function Header(props) {
 
 
             <Modal
-                isVisible={true}
+                isVisible={false}
                 style={styles.modal}
                 deviceWidth={screenWidth}
                 deviceHeight={screenHeight}

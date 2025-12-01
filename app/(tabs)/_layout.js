@@ -72,7 +72,7 @@ export default function TabsLayout() {
 
         tabBarBackground: () => (
           <LinearGradient
-            colors={[appStyle.gradientRed, appStyle.gardientBlack]}
+            colors={[appStyle.strongRed, appStyle.strongBlack]}
             start={{ x: 0, y: 0.5 }}
             end={{ x: 1, y: 0.5 }}
             style={{ height: 150 }}

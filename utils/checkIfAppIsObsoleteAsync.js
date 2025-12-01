@@ -1,4 +1,5 @@
 import * as Application from 'expo-application'
+import request from 'utils/request'
 
 const url = process.env.EXPO_PUBLIC_BACK_ADDRESS
 
@@ -13,10 +14,10 @@ const isRunningVersionObsolete = (runningVersion, minimumVersion) => {
     else if (minimumVersionNumbers[0] == runningVersionNumbers[0]) {
         if (minimumVersionNumbers[1] > runningVersionNumbers[1]) {
             obsoleteBuild = true
-        }else if (minimumVersionNumbers[1] == runningVersionNumbers[1]){
-             if (minimumVersionNumbers[2] > runningVersionNumbers[2]) {
-            obsoleteBuild = true
-        }
+        } else if (minimumVersionNumbers[1] == runningVersionNumbers[1]) {
+            if (minimumVersionNumbers[2] > runningVersionNumbers[2]) {
+                obsoleteBuild = true
+            }
         }
     }
     return obsoleteBuild
@@ -24,23 +25,16 @@ const isRunningVersionObsolete = (runningVersion, minimumVersion) => {
 
 
 const checkIfAppIsObsoleteAsync = async () => {
-    try {
-        const response = await fetch(`${url}/users/getAppMinimumVersion`)
-        const data = await response.json()
+    const data = await request({ path: '/users/getAppMinimumVersion' })
 
-        if (!data.result){
-            return false
-        }
-        
-        const appRunningVersion = Application.nativeApplicationVersion
-        const { appMinimumVersion } = data
- 
-        return isRunningVersionObsolete(appRunningVersion, appMinimumVersion)
-
-    } catch (err) {
-        console.log("UPDATE FETCH ERROR :", err)
+    if (!data) {
         return false
     }
+
+    const appRunningVersion = Application.nativeApplicationVersion
+    const { appMinimumVersion } = data
+
+    return isRunningVersionObsolete(appRunningVersion, appMinimumVersion)
 }
 
 module.exports = { checkIfAppIsObsoleteAsync }
