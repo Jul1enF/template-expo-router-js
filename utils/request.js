@@ -19,7 +19,7 @@ export default async function request({path, method = "GET", body, params, jwtTo
         warning && setWarning("")
         uploading && setUploading(true)
 
-        const url = process.env.NEXT_PUBLIC_BACK_ADDRESS;
+        const url = process.env.EXPO_PUBLIC_BACK_ADDRESS;
 
         const headers = jwtToken ? { Authorization: `Bearer ${jwtToken}` } : {};
         const options = { method, headers };

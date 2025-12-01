@@ -1,40 +1,13 @@
 import { Tabs } from "expo-router";
-import { Platform, AppState } from "react-native"
+import { Platform } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import Header from "components/layout/Header";
 import { RPH, RPW, phoneDevice } from "utils/dimensions"
 import { appStyle } from "styles/appStyle";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { checkIfAppIsObsoleteAsync } from 'utils/checkIfAppIsObsoleteAsync'
 
 
 export default function TabsLayout() {
-
-  // Check if the app should mandatory update when oppening it
-  const [appObsolete, setAppObsolete] = useState(false)
-
-  const updateAppVersionStatus = async () => {
-    const isAppObsolete = await checkIfAppIsObsoleteAsync()
-    setAppObsolete(isAppObsolete)
-  }
-
-  useEffect(() => {
-    updateAppVersionStatus()
-
-    const subscription = AppState.addEventListener("change", (state) => {
-      if (state === "active") {
-        updateAppVersionStatus()
-      }
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, []);
-
-
 
   // Offset bottom for the navigations bar (the ios ones are not well calculated)
   const tabbarPaddingBottom = Platform.OS === "ios" ? useSafeAreaInsets().bottom / 2 : useSafeAreaInsets().bottom
@@ -46,6 +19,7 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={({ route }) => ({
+        headerShown : false,
         keyboardHidesTabBar: true,
 
         tabBarIcon: ({ focused }) => {
@@ -82,7 +56,6 @@ export default function TabsLayout() {
         tabBarStyle: { height: fullTabBarHeight, paddingBottom: tabbarPaddingBottom, width: "100%", justifyContent: "space-evenly" },
         tabBarLabelPosition: "below-icon",
 
-        header: (props) => <Header {...props} appObsolete={appObsolete} />,
       })}
     >
       <Tabs.Screen name="(tab1)" options={{

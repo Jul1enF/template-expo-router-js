@@ -124,7 +124,7 @@ export default function Header(props) {
                 deviceHeight={screenHeight}
             >
                 <LinearGradient style={[styles.searchContainer, {top: modalOffsetTop + 0.5}]}
-                    colors={[appStyle.gradientRed, appStyle.gardientBlack]}
+                    colors={[appStyle.strongRed, appStyle.strongBlack]}
                     locations={[0, 0.9]}
                     start={{ x: 0, y: 0.5 }}
                     end={{ x: 1, y: 0.5 }}
@@ -195,7 +195,7 @@ export default function Header(props) {
 
 
             <Modal
-                isVisible={false}
+                isVisible={props.appObsolete}
                 style={styles.modal}
                 deviceWidth={screenWidth}
                 deviceHeight={screenHeight}
