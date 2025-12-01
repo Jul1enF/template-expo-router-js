@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { router} from 'expo-router'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native';
 
-import {RPH, RPW} from '../utils/dimensions'
-import { appStyle } from '../styles/appStyle';
+import {RPH, RPW} from 'utils/dimensions'
+import { appStyle } from 'styles/appStyle';
 
 export default function App() {
   return (

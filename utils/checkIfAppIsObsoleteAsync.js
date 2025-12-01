@@ -24,7 +24,7 @@ const isRunningVersionObsolete = (runningVersion, minimumVersion) => {
 }
 
 
-const checkIfAppIsObsoleteAsync = async () => {
+export const checkIfAppIsObsoleteAsync = async () => {
     const data = await request({ path: '/users/getAppMinimumVersion' })
 
     if (!data) {
@@ -36,5 +36,3 @@ const checkIfAppIsObsoleteAsync = async () => {
 
     return isRunningVersionObsolete(appRunningVersion, appMinimumVersion)
 }
-
-module.exports = { checkIfAppIsObsoleteAsync }

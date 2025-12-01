@@ -14,7 +14,7 @@ const STORE_CONFIG = {
     },
 };
 
-const redirectToStores = async () => {
+export const redirectToStores = async () => {
     const platformConfig =
         STORE_CONFIG[Platform.OS] || STORE_CONFIG.android;
     const { deepLink, fallback } = platformConfig;
@@ -27,6 +27,3 @@ const redirectToStores = async () => {
         await Linking.openURL(fallback);
     }
 };
-
-
-module.exports = {redirectToStores }

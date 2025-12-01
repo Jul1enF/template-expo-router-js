@@ -3,11 +3,11 @@ import { Platform, AppState } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import Header from "../../components/ui/Header";
-import { RPH, RPW, phoneDevice } from "../../utils/dimensions"
-import { appStyle } from "../../styles/appStyle";
+import Header from "components/layout/Header";
+import { RPH, RPW, phoneDevice } from "utils/dimensions"
+import { appStyle } from "styles/appStyle";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { checkIfAppIsObsoleteAsync } from '../../utils/checkIfAppIsObsoleteAsync'
+import { checkIfAppIsObsoleteAsync } from 'utils/checkIfAppIsObsoleteAsync'
 
 
 export default function TabsLayout() {

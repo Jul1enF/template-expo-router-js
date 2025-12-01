@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform, StatusBar } from "react-native";
 import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-context";
 import Constants from 'expo-constants';
-import { redirectToStores } from "../../utils/redirectToStores"
+import { redirectToStores } from "utils/redirectToStores"
 
 import { LinearGradient } from "expo-linear-gradient";
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -10,10 +10,10 @@ import Modal from "react-native-modal"
 
 import { useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../reducers/user";
+import { logout } from "reducers/user";
 import { router } from "expo-router";
-import { RPH, RPW, phoneDevice } from "../../utils/dimensions"
-import { appStyle } from "../../styles/appStyle";
+import { RPH, RPW, phoneDevice } from "utils/dimensions"
+import { appStyle } from "styles/appStyle";
 
 
 
