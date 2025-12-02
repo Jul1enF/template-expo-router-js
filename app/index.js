@@ -24,8 +24,7 @@ export default function HomePage() {
 
 const styles = StyleSheet.create({
   body: {
-    flex: 1,
-    backgroundColor: appStyle.darkWhite,
+    ...appStyle.pageBody,
     alignItems: 'center',
     justifyContent: 'center',
   },

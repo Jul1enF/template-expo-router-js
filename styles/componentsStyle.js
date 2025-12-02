@@ -36,7 +36,7 @@ export const componentsStyle = {
     // Components Style
     pageBody: {
         flex: 1,
-        backgroundColor: appStyle.darkWhite,
+        darkWhite,
     },
     card: {
         paddingTop: phoneDevice ? RPW(4.5) : 40,
