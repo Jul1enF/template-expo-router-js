@@ -10,6 +10,7 @@ module.exports = function (api) {
             styles : './styles',
             components: './components',
             utils : './utils',
+            hooks : './hooks',
             reducers : './reducers',
           },
         },
