@@ -3,18 +3,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import {RPH, RPW} from 'utils/dimensions'
 import { appStyle } from 'styles/appStyle';
 
-export default function App() {
+export default function LoginPage() {
   return (
     <View style={styles.container}>
-      <Text>Settings !</Text>
+      <Text>Login !</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: appStyle.darkWhite,
+    ...appStyle.pageBody,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -6,8 +6,8 @@ export default function RootLayout() {
             headerShown: false,
           
         }}>
-            <Stack.Screen name="tab1" options={{
-                title : "Tab 1",
+            <Stack.Screen name="index" options={{
+                title : "Tab 2",
             }} />
         </Stack>
     )

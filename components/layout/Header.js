@@ -79,7 +79,7 @@ export default function Header(props) {
     else {
         informationsOrConnexion = <TouchableOpacity style={styles.linkContainer} activeOpacity={0.6} onPress={() => {
             setMenuVisible(false)
-            router.navigate('/')
+            router.navigate('/(tabs)/(pages)/')
         }}>
             <Text style={styles.link}>Se connecter / S'inscrire</Text>
         </TouchableOpacity>

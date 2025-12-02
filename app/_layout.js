@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { useEffect } from "react";
 import * as ScreenOrientation from 'expo-screen-orientation'
 import { phoneDevice } from "../utils/dimensions"
 import Header from "components/layout/Header";
@@ -21,7 +22,9 @@ export default function RootLayout() {
         !phoneDevice && await ScreenOrientation.unlockAsync()
     }
 
-    unlockPortraitModeTablet()
+    useEffect(() => {
+        unlockPortraitModeTablet()
+    }, [phoneDevice])
 
     // Check if the version of the app is obsolete to eventually block it
     const appObsolete = useIsAppObsolete()

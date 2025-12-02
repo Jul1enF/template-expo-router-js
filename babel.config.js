@@ -1,3 +1,24 @@
+// module.exports = function (api) {
+//   api.cache(true);
+//   return {
+//     presets: ['babel-preset-expo'],
+//     plugins: [
+//       [
+//         'module-resolver',
+//         {
+//           alias: {
+//             styles : './styles',
+//             components: './components',
+//             utils : './utils',
+//             hooks : './hooks',
+//             reducers : './reducers',
+//           },
+//         },
+//       ],
+//     ],
+//   };
+// };
+
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -6,13 +27,15 @@ module.exports = function (api) {
       [
         'module-resolver',
         {
+          root: ["./"],
           alias: {
-            styles : './styles',
-            components: './components',
-            utils : './utils',
-            hooks : './hooks',
-            reducers : './reducers',
+            styles: "./styles",
+            components: "./components",
+            utils: "./utils",
+            hooks: "./hooks",
+            reducers: "./reducers",
           },
+          extensions: [".js", ".jsx", ".ts", ".tsx"],
         },
       ],
     ],

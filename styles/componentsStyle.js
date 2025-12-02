@@ -1,6 +1,6 @@
 import { RPH, RPW, phoneDevice } from 'utils/dimensions'
 import { colorsStyle } from './colorsStyle'
-const { lightGrey } = colorsStyle
+const { lightGrey, darkWhite } = colorsStyle
 
 // Sizes called multiple times in this file or on their own in the app
 const regularItemWidth = phoneDevice ? RPW(67) : 510
@@ -34,6 +34,10 @@ export const componentsStyle = {
 
 
     // Components Style
+    pageBody: {
+        flex: 1,
+        backgroundColor: appStyle.darkWhite,
+    },
     card: {
         paddingTop: phoneDevice ? RPW(4.5) : 40,
         paddingBottom: phoneDevice ? RPW(5) : 45,

@@ -28,10 +28,10 @@ export default function TabsLayout() {
           color = focused ? appStyle.darkWhite : appStyle.lightGrey
 
           switch (route.name) {
-            case '(tab1)':
+            case 'tab1':
               iconName = 'square-outline'
               break;
-            case '(tab2)':
+            case 'tab2':
               iconName = 'triangle-outline'
               break;
           }
@@ -58,10 +58,10 @@ export default function TabsLayout() {
 
       })}
     >
-      <Tabs.Screen name="(tab1)" options={{
+      <Tabs.Screen name="tab1" options={{
         title: "Tab 1"
       }} />
-      <Tabs.Screen name="(tab2)" options={{
+      <Tabs.Screen name="tab2" options={{
         title: "Tab 2",
       }} />
       <Tabs.Screen name="(pages)" options={{
