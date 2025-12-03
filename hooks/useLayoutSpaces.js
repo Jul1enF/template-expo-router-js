@@ -3,7 +3,7 @@ import { useSafeAreaFrame, useSafeAreaInsets } from "react-native-safe-area-cont
 import Constants from 'expo-constants';
 import { appStyle } from "styles/appStyle"
 
-export default function useLayoutSpaces(secondHeader) {
+export default function useLayoutSpaces(tabBar, secondHeader) {
     const { height: screenHeight, width: screenWidth } = useSafeAreaFrame()
 
     const tabbarPaddingBottom = Platform.OS === "ios" ? useSafeAreaInsets().bottom / 2 : useSafeAreaInsets().bottom
@@ -15,7 +15,9 @@ export default function useLayoutSpaces(secondHeader) {
     // On Android, react native modal already include the statusBarOffset
     const modalOffsetTop = Platform.OS === "ios" ? topBlockedHeight + statusBarOffset : topBlockedHeight
 
-    const freeHeight = screenHeight - appStyle.headerHeight - statusBarOffset - appStyle.tabBarHeight - tabbarPaddingBottom
+    const freeHeight = screenHeight - appStyle.headerHeight - statusBarOffset 
+    - ( tabBar ? appStyle.tabBarHeight : 0)
+    - (tabBar && Platform.OS === "android" ? tabbarPaddingBottom : 0)
 
     return { modalOffsetTop, statusBarOffset, topBlockedHeight, freeHeight, screenHeight, screenWidth }
 }
