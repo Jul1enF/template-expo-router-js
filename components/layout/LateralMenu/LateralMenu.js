@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, View, FlatList } from "react-native"
 import Modal from "react-native-modal"
 import { RPH, RPW, phoneDevice } from "utils/dimensions"
 import LateralMenuItem from "./LateralMenuItem"
@@ -17,12 +17,10 @@ export default function LateralMenu({ menuVisible, setMenuVisible, screenHeight,
     const sectionsArray = [
         { sectionName: "Accueil", link: "/home" },
         { sectionName: "Accueil 2", link: "/(tabs)/(pages)" },
-        { sectionName: logged ? "Se déconnecter" : "Se connecter / S'inscrire", link: logged ? "/(tabs)/(pages)/login" : null, func: logoutUser },
+        { sectionName: logged ? "Se déconnecter" : "Se connecter / S'inscrire", link: logged ? "/home" : "/(tabs)/(pages)/login", func: logged ? logoutUser : null },
         { sectionName: "Tab 2", link: "/tab2" },
     ]
     // user.is_admin && sectionsArray.push({ sectionName: "Écrire / Modifier un article", link: "/redaction" })
-
-    const sections = sectionsArray.map((e, i) => <LateralMenuItem {...e} key={i} setMenuVisible={setMenuVisible} />)
 
     return (
         <Modal
@@ -37,7 +35,14 @@ export default function LateralMenu({ menuVisible, setMenuVisible, screenHeight,
             deviceHeight={screenHeight}
         >
             <View style={[styles.menu, { height: freeHeight, top: modalOffsetTop + 0.5 }]}>
-                {sections}
+                <FlatList
+                    data={sectionsArray}
+                    renderItem={({ item, index }) => {
+                        return <LateralMenuItem {...item} setMenuVisible={setMenuVisible} index={index} key={index} />
+                    }}
+                    showsVerticalScrollIndicator={false}
+                    style={{flex : 1}}
+                />
             </View>
         </Modal>
     )

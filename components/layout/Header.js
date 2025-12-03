@@ -9,9 +9,8 @@ import Modal from "react-native-modal"
 import LateralMenu from "./LateralMenu/LateralMenu";
 
 import { useState } from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import useLayoutSpaces from "hooks/useLayoutSpaces"
-import { logout } from "reducers/user";
 import { router } from "expo-router";
 import { RPH, RPW, phoneDevice } from "utils/dimensions"
 import { appStyle } from "styles/appStyle";
@@ -22,11 +21,10 @@ export default function Header(props) {
 
     const [menuVisible, setMenuVisible] = useState(false)
     const user = useSelector((state) => state.user.value)
-    const dispatch = useDispatch()
 
 
 
-    // Hook for the height of the screen (for tablets orientation changes), the height available and detection of android insetTop to use as offset
+    // Hook for the height/width of the screen (for tablets orientation changes), the height available and detection of android insetTop to use as offset
 
     const { modalOffsetTop, statusBarOffset, freeHeight, screenHeight, screenWidth } = useLayoutSpaces()
 
@@ -36,17 +34,6 @@ export default function Header(props) {
 
     const [searchVisible, setSearchVisible] = useState(false)
     const [searchText, setSearchText] = useState('')
-
-
-    // Fonction appelée en cliquant sur Se déconnecter
-
-    const logoutPress = async () => {
-
-        // Reducer logout, fermeture du menu et push vers page d'accueil
-        setMenuVisible(false)
-        dispatch(logout())
-        router.navigate('/')
-    }
 
 
 

@@ -21,7 +21,7 @@ const sectionPress = () => {
 
 const styles = StyleSheet.create({
     linkContainer: {
-        height: phoneDevice ? RPH(11.5) : 150,
+        height: phoneDevice ? RPW(26) : 150,
         borderTopWidth: 0.5,
         borderTopColor: appStyle.strongBlack,
         justifyContent: "center",

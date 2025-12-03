@@ -1,11 +1,21 @@
 import { router } from 'expo-router'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, StatusBar } from 'react-native';
 
+// FOR HIDING SPLASH SCREEN WHEN PAGE IS LOADED 
+import { useEffect } from "react";
+import * as SplashScreen from 'expo-splash-screen';
+
 import { RPH, RPW, phoneDevice } from "utils/dimensions"
 import { appStyle } from 'styles/appStyle';
 
 export default function HomePage() {
-    // IF THE FIRST PAGE SHOULD
+
+  // FOR HIDING SPLASH SCREEN WHEN PAGE IS LOADED 
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
+
   return (
     <View style={styles.body}>
       <StatusBar translucent={true} backgroundColor="transparent" barStyle="light" />
