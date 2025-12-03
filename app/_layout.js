@@ -34,7 +34,8 @@ export default function RootLayout() {
             <Stack screenOptions={{
                 header: (props) => <Header {...props} appObsolete={appObsolete} />,
             }} >
-                <Stack.Screen name="index" options={{
+                <Stack.Screen name="index" />
+                 <Stack.Screen name="home" options={{
                     title: "Accueil",
                 }} />
                 <Stack.Screen name="(tabs)" />
