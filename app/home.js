@@ -23,7 +23,7 @@ export default function HomePage() {
       <TouchableOpacity onPress={() => router.navigate('/tab1')} style={[appStyle.button, appStyle.regularItem, appStyle.lightGreyBorder]}>
         <Text style={appStyle.regularText}>Go to Tabs</Text>
       </TouchableOpacity>
-      <TextInput style={[appStyle.largeItem, appStyle.input, appStyle.regularText, { backgroundColor: appStyle.blueLink }]} ></TextInput>
+      {/* <TextInput style={[appStyle.largeItem, appStyle.input, appStyle.regularText, { backgroundColor: appStyle.blueLink }]} ></TextInput> */}
     </View>
   );
 }

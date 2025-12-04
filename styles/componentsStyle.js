@@ -1,6 +1,6 @@
 import { RPH, RPW, phoneDevice } from 'utils/dimensions'
 import { colorsStyle } from './colorsStyle'
-const { lightGrey, darkWhite } = colorsStyle
+const { brightGrey, lightGrey, darkWhite } = colorsStyle
 
 // Sizes called multiple times in this file or on their own in the app
 const regularItemWidth = phoneDevice ? RPW(67) : 510
@@ -39,8 +39,8 @@ export const componentsStyle = {
         darkWhite,
     },
     card: {
-        paddingTop: phoneDevice ? RPW(4.5) : 40,
-        paddingBottom: phoneDevice ? RPW(5) : 45,
+        paddingTop: phoneDevice ? RPW(5) : 40,
+        paddingBottom: phoneDevice ? RPW(5.5) : 45,
         paddingRight: cardLateralPadding,
         paddingLeft: cardLateralPadding,
         borderRadius: regularItemBorderRadius,
@@ -72,10 +72,14 @@ export const componentsStyle = {
         paddingRight: phoneDevice ? RPW(2) : 20,
         paddingLeft: phoneDevice ? RPW(2) : 20,
     },
+     horizontalLine: {
+        height: phoneDevice ? 1.5 : 2,
+        backgroundColor: brightGrey,
+    },
 
     // Border Colors
     lightGreyBorder: {
         borderColor: lightGrey,
-        borderWidth: phoneDevice ? 1 : 1.5,
+        borderWidth: phoneDevice ? 1.2 : 1.8,
     }
 }

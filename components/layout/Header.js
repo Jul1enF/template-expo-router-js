@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform, StatusBar } from "react-native";
+import { View, Text, StyleSheet, StatusBar } from "react-native";
 import { useSegments } from "expo-router";
 
 import { LinearGradient } from "expo-linear-gradient";

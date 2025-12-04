@@ -10,14 +10,15 @@ export const fontsStyle = {
         color: strongBlack,
     },
     pageSubtitle: {
-        fontSize: phoneDevice ? RPW(4.5) : 28,
+        fontSize: phoneDevice ? RPW(5) : 32,
         letterSpacing: phoneDevice ? RPW(0.4) : 3,
         fontWeight: '500',
         color: strongBlack,
     },
     regularText: {
         color: strongBlack,
-        fontSize: phoneDevice ? RPW(4) : 25,
+        fontSize: phoneDevice ? RPW(4.3) : 28,
+        lineHeight : phoneDevice ? RPW(5.5) : 35,
         fontWeight: "400",
     },
     inputLabelText: {
