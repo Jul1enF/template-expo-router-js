@@ -9,7 +9,7 @@ export default function LateralMenuItem({sectionName, link, func, setMenuVisible
 
 const sectionPress = () => {
     typeof func === "function" && func()
-    link && router.navigate(`${link}`)
+    link && router.navigate(link)
     setMenuVisible(false);
 }
     return (

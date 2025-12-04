@@ -12,7 +12,10 @@ export default function Tab1Page() {
   return (
     <View style={styles.body}>
       <Text style={styles.pageTitle}>Tab 1 !</Text>
-      <Button func={() => setModalVisible(!modalVisible)} text={"Button"} itemStyle={appStyle.largeItem} border={appStyle.lightGreyBorder} color={appStyle.strongBlack} />
+
+      <Button func={() => setModalVisible(!modalVisible)} text={"Button 1"} itemStyle={appStyle.largeItem} border={appStyle.lightGreyBorder} color={appStyle.strongBlack} />
+
+        <Button func={() => setModalVisible(!modalVisible)} text={"Button 2"} />
 
       <ConfirmationModal
         visible={modalVisible}

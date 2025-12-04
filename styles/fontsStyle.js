@@ -1,6 +1,6 @@
 import { RPH, RPW, phoneDevice } from 'utils/dimensions'
 import { colorsStyle } from "./colorsStyle"
-const { strongBlack, strongRed } = colorsStyle
+const { strongBlack, strongRed, darkWhite2 } = colorsStyle
 
 export const fontsStyle = {
     pageTitle: {
@@ -39,4 +39,7 @@ export const fontsStyle = {
         textAlign: "center",
         width: "100%",
     },
+
+    // Special font color
+    fontColorDarkBg : darkWhite2,
 }

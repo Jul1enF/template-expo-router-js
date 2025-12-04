@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     menu: {
         width: phoneDevice ? "85%" : "73.5%",
-        backgroundColor: appStyle.lightGrey3,
+        backgroundColor: appStyle.lightGrey2,
         position: "absolute",
     },
 })

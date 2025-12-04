@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     confirmationText: {
         ...appStyle.regularText,
-        color: appStyle.brightGrey,
+        color: appStyle.fontColorDarkBg,
         textAlign: "center",
     },
     line: {

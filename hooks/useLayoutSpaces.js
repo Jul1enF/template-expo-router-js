@@ -16,8 +16,7 @@ export default function useLayoutSpaces(tabBar, secondHeader) {
     const modalOffsetTop = Platform.OS === "ios" ? topBlockedHeight + statusBarOffset : topBlockedHeight
 
     const freeHeight = screenHeight - appStyle.headerHeight - statusBarOffset 
-    - ( tabBar ? appStyle.tabBarHeight : 0)
-    - (tabBar && Platform.OS === "android" ? tabbarPaddingBottom : 0)
+    - ( tabBar ? appStyle.tabBarHeight + tabbarPaddingBottom : 0)
 
     return { modalOffsetTop, statusBarOffset, topBlockedHeight, freeHeight, screenHeight, screenWidth }
 }
