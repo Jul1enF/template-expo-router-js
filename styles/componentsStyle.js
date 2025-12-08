@@ -10,7 +10,7 @@ const regularItemBorderRadius = phoneDevice ? RPW(2.5) : 18
 const largeItemWidth = phoneDevice ? RPW(92) : 716
 const largeItemHeight = phoneDevice ? RPW(12) : 78
 
-const cardLateralPadding = phoneDevice ? RPW(9) : 55
+const cardLateralPadding = phoneDevice ? RPW(5) : 30
 
 
 export const componentsStyle = {
@@ -39,14 +39,13 @@ export const componentsStyle = {
         backgroundColor : darkWhite,
     },
     card: {
-        paddingTop: phoneDevice ? RPW(5) : 40,
-        paddingBottom: phoneDevice ? RPW(5.5) : 45,
-        paddingRight: cardLateralPadding,
-        paddingLeft: cardLateralPadding,
+        paddingTop: phoneDevice ? RPW(6) : 45,
+        paddingBottom: phoneDevice ? RPW(6.5) : 50,
+        paddingHorizontal : cardLateralPadding,
         borderRadius: regularItemBorderRadius,
         marginTop: phoneDevice ? RPW(6) : 40,
         alignItems: "center",
-        width: cardLateralPadding + regularItemWidth
+        width: (cardLateralPadding * 2) + regularItemWidth
     },
     input: {
         paddingBottom: 0,
@@ -61,16 +60,14 @@ export const componentsStyle = {
         width: regularItemWidth,
         borderRadius: regularItemBorderRadius,
         marginTop: phoneDevice ? RPW(3) : 25,
-        paddingRight: phoneDevice ? RPW(2) : 20,
-        paddingLeft: phoneDevice ? RPW(2) : 20,
+        paddingHorizontal : phoneDevice ? RPW(2) : 20,
     },
     largeItem: {
         height: largeItemHeight,
         width: largeItemWidth,
         borderRadius: regularItemBorderRadius,
         marginTop: phoneDevice ? RPW(3) : 25,
-        paddingRight: phoneDevice ? RPW(2) : 20,
-        paddingLeft: phoneDevice ? RPW(2) : 20,
+        paddingHorizontal : phoneDevice ? RPW(2) : 20,
     },
      horizontalLine: {
         height: phoneDevice ? 1.5 : 2,

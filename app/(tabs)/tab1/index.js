@@ -2,10 +2,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import Button from 'components/ui/Button';
 import ConfirmationModal from 'components/ui/ConfirmationModal';
-import HorizontalMenu from 'components/layout/HorizontalMenu';
-import { useState, useEffect } from 'react';
+import HorizontalMenu from 'components/ui/HorizontalMenu';
+import { useState } from 'react';
 
-import { RPH, RPW } from 'utils/dimensions'
+import { RPH, RPW, phoneDevice } from 'utils/dimensions'
 import { appStyle } from 'styles/appStyle';
 
 export default function Tab1Page() {
@@ -20,19 +20,17 @@ export default function Tab1Page() {
     { sectionName: "Tab 2", link: "/tab2" },
   ])
  
-  const [selectedSection, setSelectedSection] = useState(sectionsArray[0])
+  const [selectedSection, setSelectedSection] = useState(sectionsArray[0].sectionName)
 
   return (
     <>
-      <HorizontalMenu data={sectionsArray} name={"sectionName"} chosenItem={selectedSection} setChosenItem={setSelectedSection} />
+      <HorizontalMenu data={sectionsArray} name={"sectionName"} chosenItem={selectedSection} setChosenItem={setSelectedSection} categoryType="sectionName" />
       <View style={styles.body}>
         <Text style={styles.pageTitle}>Tab 1 !</Text>
 
         <Button func={() => setModalVisible(!modalVisible)} text={"Button 1"} itemStyle={appStyle.largeItem} border={appStyle.lightGreyBorder} color={appStyle.strongBlack} />
 
         <Button func={() => setModalVisible(!modalVisible)} text={"Button 2"} />
-
-          {articles}
 
         <ConfirmationModal
           visible={modalVisible}

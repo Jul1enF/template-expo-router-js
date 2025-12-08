@@ -7,9 +7,9 @@ export default function Button ({func, text, itemStyle = appStyle.regularItem, b
         <TouchableOpacity style={[
           appStyle.button, 
           itemStyle, 
-          border, 
+          border ? border : {}, 
           {backgroundColor : !border ? bgColor : "transparent"},
-          padding && {width : "auto", paddingLeft : padding, paddingRight : padding}
+          padding && {width : "auto", paddingHorizontal : padding}
           ]} 
           onPress={func} activeOpacity={0.6}
           >

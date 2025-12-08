@@ -1,21 +1,40 @@
 import { Text, TouchableOpacity, FlatList, View, StyleSheet } from "react-native";
+import { useRef, useEffect } from "react";
 import { RPH, RPW, phoneDevice } from "utils/dimensions"
 import { appStyle } from "styles/appStyle"
 import { router } from "expo-router";
 
-export default function HorizontalMenu({ data, menuBelow, func, name, chosenItem, setChosenItem }) {
+export default function HorizontalMenu({ data, menuBelow, func, name, chosenItem, setChosenItem, categoryType, countProp, length }) {
 
-    // REGARDER L'ENREGISTREMENT DE CATÉROGIE POUR REVENIR À LA PRÉCÉDENTE SÉLECTIONNÉE
+    const dataArray = Array.isArray(data) ? data :
+        length ? Object.values(data).sort((a, b) => b[countProp].length - a[countProp].length) :
+            Object.values(data).sort((a, b) => b[countProp] - a[countProp])
 
+    const flatlistRef = useRef(null)
+
+    const scrollToIndex = (delay, selectedIndex = dataArray.findIndex(item => item[categoryType] === chosenItem)) => {
+        if (selectedIndex < 0 || !flatlistRef.current) return
+        // Delay to ensure flatlist is ready
+        setTimeout(() => {
+            flatlistRef.current.scrollToIndex({
+                index: selectedIndex,
+                animated: true,
+                viewPosition: 0.5,
+            })
+        }, delay)
+    }
+
+    useEffect(() => {
+        scrollToIndex(10)
+    }, [chosenItem, dataArray])
 
 
     const Item = (props) => {
-        const itemSelected = name ? props[name] === chosenItem[name] : props.name === chosenItem.name
+        const itemSelected = props[categoryType] === chosenItem
 
         const itemPress = () => {
-            setChosenItem(props)
+            setChosenItem(props[categoryType])
             typeof func === "function" && func()
-            if (props.func && typeof props.func === "function") props.func()
             props.link && router.navigate(props.link)
         }
 
@@ -30,14 +49,16 @@ export default function HorizontalMenu({ data, menuBelow, func, name, chosenItem
 
     return (
         <FlatList
-            data={data}
+            data={dataArray}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ alignItems: 'center' }}
+            contentContainerStyle={{ alignItems: 'center', paddingRight: phoneDevice ? RPW(3.5) : 34 }}
             style={[styles.flatlist, !menuBelow && styles.flatlistBorderBottom]}
             renderItem={({ item, index }) => {
                 return <Item {...item} index={index} />
             }}
+            ref={flatlistRef}
+            onScrollToIndexFailed={(info) => scrollToIndex(100, info.index)}
         />
     )
 }
@@ -56,16 +77,15 @@ const styles = StyleSheet.create({
     itemBtn: {
         marginLeft: phoneDevice ? RPW(3.5) : 34,
         minHeight: "100%",
-        justifyContent: "center"
+        justifyContent: "center",
     },
     unselectedItemBtn: {
-        paddingLeft : phoneDevice ? RPW(0.25) : 2,
-        paddingRight : phoneDevice ? RPW(0.25) : 2,
+
     },
     selectedItemBtn: {
         borderBottomColor: appStyle.strongBlack,
         borderBottomWidth: phoneDevice ? 5 : 7,
-        paddingTop : phoneDevice ? 5 : 7,
+        paddingTop: phoneDevice ? 5 : 7,
     },
     itemText: {
         color: appStyle.strongBlack,

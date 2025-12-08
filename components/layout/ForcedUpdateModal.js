@@ -49,8 +49,7 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: appStyle.darkWhite,
         paddingTop: appStyle.pagePaddingTop,
-        paddingLeft: 15,
-        paddingRight: 15
+        paddingHorizontal : 15,
     },
     obsoleteText: {
         ...appStyle.regularText,

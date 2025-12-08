@@ -72,8 +72,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingLeft: phoneDevice ? RPW(4) : 30,
-        paddingRight: phoneDevice ? RPW(4) : 30,
+        paddingHorizontal : phoneDevice ? RPW(4) : 30,
     },
     searchInputContainer: {
         borderBottomColor: appStyle.darkWhite,

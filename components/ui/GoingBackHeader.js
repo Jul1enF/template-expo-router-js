@@ -33,8 +33,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingRight: phoneDevice ? RPW(4) : 30,
-        paddingLeft: phoneDevice ? RPW(4) : 30,
+        paddingHorizontal : phoneDevice ? RPW(4) : 30,
     },
     buttonContainer: {
         flexDirection: "row",
