@@ -1,33 +1,46 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    value : [],
+    value: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        push_token: "",
+        jwtToken: "",
+        bookmarks: [],
+    },
 }
 
 export const userSlice = createSlice({
-    name : 'user',
+    name: 'user',
     initialState,
-    reducers : {
-        login : (state, action)=>{
+    reducers: {
+        login: (state, action) => {
             state.value = action.payload
         },
-        logout : (state, action)=>{
-            state.value = []
+        logout: (state, action) => {
+            state.value = {
+                first_name: "",
+                last_name: "",
+                email: "",
+                push_token: "",
+                jwtToken: "",
+                bookmarks: [],
+            }
         },
-        changePushToken : (state, action)=>{
+        changePushToken: (state, action) => {
             state.value.push_token = action.payload
         },
-        addBookmark  : (state, action)=>{
+        addBookmark: (state, action) => {
             state.value.bookmarks.push(action.payload)
         },
-        removeBookmark : (state, action)=>{
-            state.value.bookmarks = state.value.bookmarks.filter(e=> e!== action.payload)
+        removeBookmark: (state, action) => {
+            state.value.bookmarks = state.value.bookmarks.filter(e => e !== action.payload)
         },
-        changeUserInfos : (state, action)=>{
-            state.value.firstname = action.payload.firstname
-            state.value.name = action.payload.name
+        changeUserInfos: (state, action) => {
+            state.value.first_name = action.payload.firstName
+            state.value.last_name = action.payload.lastName
             state.value.email = action.payload.email
-            state.value.coach = action.payload.coach
         },
     }
 })

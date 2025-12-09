@@ -20,7 +20,7 @@ import { appStyle } from "styles/appStyle";
 export default function Header({appObsolete}) {
 
     const [menuVisible, setMenuVisible] = useState(false)
-    const user = useSelector((state) => state.user.value)
+    const jwtToken = useSelector((state) => state.user.value.jwtToken)
 
     const segments = useSegments();
     const tabBar = segments[0] === "(tabs)"
@@ -60,7 +60,7 @@ export default function Header({appObsolete}) {
                 
                 <SearchModal screenHeight={screenHeight} screenWidth={screenWidth} modalOffsetTop={modalOffsetTop} searchVisible={searchVisible} setSearchVisible={setSearchVisible} />
 
-                <LateralMenu menuVisible={menuVisible} setMenuVisible={setMenuVisible} screenHeight={screenHeight} screenWidth={screenWidth} modalOffsetTop={modalOffsetTop} freeHeight={freeHeight} user={user} />
+                <LateralMenu menuVisible={menuVisible} setMenuVisible={setMenuVisible} screenHeight={screenHeight} screenWidth={screenWidth} modalOffsetTop={modalOffsetTop} freeHeight={freeHeight} jwtToken={jwtToken} />
 
 
                 <ForcedUpdateModal screenHeight={screenHeight} screenWidth={screenWidth} appObsolete={appObsolete} freeHeight={freeHeight} modalOffsetTop={modalOffsetTop} />

@@ -8,16 +8,15 @@ import { logout } from "reducers/user";
 import { useDispatch } from "react-redux";
 
 
-export default function LateralMenu({ menuVisible, setMenuVisible, screenHeight, screenWidth, modalOffsetTop, freeHeight, user }) {
+export default function LateralMenu({ menuVisible, setMenuVisible, screenHeight, screenWidth, modalOffsetTop, freeHeight, jwtToken }) {
 
     const dispatch = useDispatch()
-    const logged = user.jwtToken ? true : false
     const logoutUser = () => dispatch(logout())
 
     const sectionsArray = [
         { sectionName: "Accueil", link: "/home" },
         { sectionName: "Accueil 2", link: "/(tabs)/(pages)" },
-        { sectionName: logged ? "Se déconnecter" : "Se connecter / S'inscrire", link: logged ? "/home" : "/(tabs)/(pages)/login", func: logged ? logoutUser : null },
+        { sectionName: logged ? "Se déconnecter" : "Se connecter / S'inscrire", link: logged ? "/home" : "/(tabs)/(pages)/login", func: jwtToken ? logoutUser : null },
         { sectionName: "Tab 2", link: "/tab2" },
     ]
     // user.is_admin && sectionsArray.push({ sectionName: "Écrire / Modifier un article", link: "/redaction" })
