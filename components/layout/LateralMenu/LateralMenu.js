@@ -12,6 +12,7 @@ export default function LateralMenu({ menuVisible, setMenuVisible, screenHeight,
 
     const dispatch = useDispatch()
     const logoutUser = () => dispatch(logout())
+    const logged = jwtToken ? true : false
 
     const sectionsArray = [
         { sectionName: "Accueil", link: "/home" },

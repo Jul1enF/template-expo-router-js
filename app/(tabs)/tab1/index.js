@@ -39,7 +39,7 @@ export default function Tab1Page() {
           confirmationBtnText="Effacer mon profil"
           cancelBtnText="Annuler"
           confirmationFunc={() => console.log("HELLO !")}
-          warningText={""}
+          warning={{}}
         />
       </View>
     </>

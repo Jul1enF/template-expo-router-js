@@ -1,6 +1,6 @@
 import { RPH, RPW, phoneDevice } from 'utils/dimensions'
 import { colorsStyle } from "./colorsStyle"
-const { strongBlack, strongRed, darkWhite2 } = colorsStyle
+const { strongBlack, strongRed, darkWhite2, lightGreen } = colorsStyle
 
 export const fontsStyle = {
     pageTitle: {
@@ -18,7 +18,7 @@ export const fontsStyle = {
     regularText: {
         color: strongBlack,
         fontSize: phoneDevice ? RPW(4.3) : 28,
-        lineHeight : phoneDevice ? RPW(5.5) : 35,
+        lineHeight: phoneDevice ? RPW(5.5) : 35,
         fontWeight: "400",
     },
     inputLabelText: {
@@ -32,14 +32,19 @@ export const fontsStyle = {
         fontWeight: "400",
     },
     warning: {
-        color: strongRed,
-        fontSize: phoneDevice ? RPW(4) : 25,
+        fontSize: phoneDevice ? RPW(4) : 26,
         letterSpacing: phoneDevice ? 0.5 : 1,
         fontWeight: "500",
         textAlign: "center",
         width: "100%",
     },
+    error: {
+        color: strongRed,
+    },
+    success: {
+        color: lightGreen,
+    },
 
     // Special font color
-    fontColorDarkBg : darkWhite2,
+    fontColorDarkBg: darkWhite2,
 }
