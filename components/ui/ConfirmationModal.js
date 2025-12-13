@@ -3,8 +3,8 @@ import useLayoutSpaces from "../../hooks/useLayoutSpaces";
 import Modal from "react-native-modal"
 import Button from "./Button";
 
-import { RPH, RPW, phoneDevice } from 'utils/dimensions.js'
-import { appStyle } from 'styles/appStyle.js';
+import { RPH, RPW, phoneDevice } from '@utils/dimensions.js'
+import { appStyle } from '@styles/appStyle.js';
 
 export default function ConfirmationModal({visible, closeModal, confirmationText, confirmationBtnText, confirmationFunc, warning, cancelBtnText}) {
 

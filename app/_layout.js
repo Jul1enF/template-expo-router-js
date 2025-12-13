@@ -2,12 +2,12 @@ import { Stack } from "expo-router";
 import { useEffect } from "react";
 import * as ScreenOrientation from 'expo-screen-orientation'
 import { phoneDevice } from "../utils/dimensions"
-import Header from "components/layout/Header";
-import useIsAppObsolete from "hooks/useIsAppObsolete";
+import Header from "@components/layout/Header";
+import useIsAppObsolete from "@hooks/useIsAppObsolete";
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import user from 'reducers/user'
+import user from '@reducers/user'
 
 
 const store = configureStore({
