@@ -14,7 +14,6 @@ export default function Home2Page() {
 const styles = StyleSheet.create({
   container: {
     ...appStyle.pageBody,
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });

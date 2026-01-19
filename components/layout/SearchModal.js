@@ -5,11 +5,13 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Modal from "react-native-modal"
 import { RPH, RPW, phoneDevice } from "@utils/dimensions"
 import { appStyle } from "@styles/appStyle";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 
 
 export default function SearchModal({ searchVisible, setSearchVisible, screenWidth, screenHeight, modalOffsetTop }) {
 
+    const router  = useRouter()
+    
     const [searchText, setSearchText] = useState('')
 
     // Function called when a search is submitted
@@ -40,7 +42,7 @@ export default function SearchModal({ searchVisible, setSearchVisible, screenWid
             >
                 <View style={styles.searchInputContainer}>
                     <TextInput
-                        style={[styles.search, appStyle.input, { color: appStyle.darkWhite }]}
+                        style={[styles.search, appStyle.inputVertPadding, { color: appStyle.darkWhite }]}
                         placeholder="Rechercher..."
                         onChangeText={(e) => setSearchText(e)}
                         value={searchText}

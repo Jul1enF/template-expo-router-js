@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
-import useLayoutSpaces from "../../hooks/useLayoutSpaces";
+import useLayoutSpaces from "@hooks/useLayoutSpaces";
 import Modal from "react-native-modal"
-import Button from "./Button";
+import Button from "@components/ui/Button";
 
 import { RPH, RPW, phoneDevice } from '@utils/dimensions.js'
 import { appStyle } from '@styles/appStyle.js';
 
-export default function ConfirmationModal({visible, closeModal, confirmationText, confirmationBtnText, confirmationFunc, warning, cancelBtnText}) {
+export default function ConfirmationModal({ visible, closeModal, confirmationText, confirmationBtnText, confirmationFunc, warning, cancelBtnText }) {
 
     const { screenHeight, screenWidth } = useLayoutSpaces()
 
@@ -14,7 +14,7 @@ export default function ConfirmationModal({visible, closeModal, confirmationText
         <Modal
             isVisible={visible}
             backdropColor="black"
-            backdropOpacity={0.8}
+            backdropOpacity={0.85}
             deviceWidth={screenWidth}
             deviceHeight={screenHeight}
             statusBarTranslucent={true}
@@ -24,16 +24,18 @@ export default function ConfirmationModal({visible, closeModal, confirmationText
             onBackButtonPress={() => closeModal()}
             onBackdropPress={() => closeModal()}
             style={{ alignItems: "center", justifyContent: "center", margin: 0 }}
+            useNativeDriverForBackdrop={false}
         >
             <View style={styles.modalBody}>
                 <Text style={styles.confirmationText}>
                     {confirmationText}
                 </Text>
                 <View style={styles.line} />
-                
-                 <Button func={closeModal} text={cancelBtnText} marginTop={0} />
+
+                <Button func={closeModal} text={cancelBtnText} style={{marginTop : 0}} />
                 <Button func={confirmationFunc} text={confirmationBtnText} />
-                <Text style={[appStyle.warning, warning?.success ? appStyle.success : appStyle.error, !warning?.text ? {height : 0} : {marginTop : phoneDevice ? RPW(3) : 30}]}>
+
+                <Text style={[appStyle.warning, warning?.success && appStyle.success, !warning?.text && { height: 0, marginTop : 0 }]}>
                     {warning?.text}
                 </Text>
             </View>
@@ -44,16 +46,15 @@ export default function ConfirmationModal({visible, closeModal, confirmationText
 const styles = StyleSheet.create({
     modalBody: {
         ...appStyle.card,
-        backgroundColor : appStyle.darkGrey
     },
     confirmationText: {
-        ...appStyle.regularText,
+        ...appStyle.largeText,
+        textAlign : "center",
         color: appStyle.fontColorDarkBg,
-        textAlign: "center",
     },
     line: {
         width: "40%",
         ...appStyle.horizontalLine,
-        marginVertical: phoneDevice ? RPW(7) : 50,
+        marginVertical: appStyle.largeMarginTop,
     },
 })

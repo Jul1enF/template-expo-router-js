@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StatusBar } from "react-native";
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity } from "react-native";
 import { useSegments } from "expo-router";
 
 import { LinearGradient } from "expo-linear-gradient";
@@ -10,7 +10,6 @@ import ForcedUpdateModal from "./ForcedUpdateModal";
 import SearchModal from "./SearchModal";
 
 import { useState } from 'react'
-import { useSelector } from "react-redux";
 import useLayoutSpaces from "@hooks/useLayoutSpaces"
 import { RPH, RPW, phoneDevice } from "@utils/dimensions"
 import { appStyle } from "@styles/appStyle";
@@ -20,7 +19,6 @@ import { appStyle } from "@styles/appStyle";
 export default function Header({appObsolete}) {
 
     const [menuVisible, setMenuVisible] = useState(false)
-    const jwtToken = useSelector((state) => state.user.value.jwtToken)
 
     const segments = useSegments();
     const tabBar = segments[0] === "(tabs)"
@@ -44,23 +42,23 @@ export default function Header({appObsolete}) {
                     start={{ x: 0, y: 0.5 }}
                     end={{ x: 1, y: 0.5 }}
                 >
-                    <View style={styles.menuIconContainer}>
-                        <FontAwesome name="navicon" style={styles.icon} size={phoneDevice ? RPW(7) : 38} onPress={() => setMenuVisible(!menuVisible)} />
-                    </View>
+                    <TouchableOpacity activeOpacity={0.6} style={styles.menuIconContainer} onPress={() => setMenuVisible(!menuVisible)}>
+                        <FontAwesome name="navicon" style={styles.icon} size={phoneDevice ? RPW(6) : 38} />
+                    </TouchableOpacity>
                     <View style={styles.titleContainer}>
                         <Text style={styles.title}>
                             APP NAME
                         </Text>
                     </View>
-                    <View style={styles.searchIconContainer}>
-                        <FontAwesome6 name="magnifying-glass" style={styles.icon} size={phoneDevice ? RPW(6.5) : 38} onPress={() => setSearchVisible(!searchVisible)} />
-                    </View>
+                    <TouchableOpacity activeOpacity={0.6} style={styles.searchIconContainer} onPress={() => setSearchVisible(!searchVisible)}>
+                        <FontAwesome6 name="magnifying-glass" style={styles.icon} size={phoneDevice ? RPW(6) : 38} />
+                    </TouchableOpacity>
                 </LinearGradient>
                 <View style={styles.headerLigne}></View>
                 
                 <SearchModal screenHeight={screenHeight} screenWidth={screenWidth} modalOffsetTop={modalOffsetTop} searchVisible={searchVisible} setSearchVisible={setSearchVisible} />
 
-                <LateralMenu menuVisible={menuVisible} setMenuVisible={setMenuVisible} screenHeight={screenHeight} screenWidth={screenWidth} modalOffsetTop={modalOffsetTop} freeHeight={freeHeight} jwtToken={jwtToken} />
+                <LateralMenu menuVisible={menuVisible} setMenuVisible={setMenuVisible} screenHeight={screenHeight} screenWidth={screenWidth} modalOffsetTop={modalOffsetTop} freeHeight={freeHeight} />
 
 
                 <ForcedUpdateModal screenHeight={screenHeight} screenWidth={screenWidth} appObsolete={appObsolete} freeHeight={freeHeight} modalOffsetTop={modalOffsetTop} />

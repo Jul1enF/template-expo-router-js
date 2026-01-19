@@ -13,9 +13,9 @@ export default function Tab1Page() {
   const [sectionsArray, setSectionsArray] = useState([
     { sectionName: "Accueil", link: "/home" },
     { sectionName: "Tab 1 Test", link: "/tab1" },
-    { sectionName: "Accueil 2", link: "/(tabs)/(pages)" },
+    { sectionName: "Accueil 2", link: "/home2" },
     { sectionName: "Test 2", link: "/tab1" },
-    { sectionName: "Se connecter / S'inscrire", link: "/(tabs)/(pages)/login", func: () => console.log("FUNC !") },
+    { sectionName: "Se connecter / S'inscrire", link: "/login", func: () => console.log("FUNC !") },
     { sectionName: "Tab 1", link: "/tab1" },
     { sectionName: "Tab 2", link: "/tab2" },
   ])
@@ -49,7 +49,6 @@ export default function Tab1Page() {
 const styles = StyleSheet.create({
   body: {
     ...appStyle.pageBody,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   pageTitle: {

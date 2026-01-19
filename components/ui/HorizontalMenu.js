@@ -2,9 +2,11 @@ import { Text, TouchableOpacity, FlatList, View, StyleSheet } from "react-native
 import { useRef, useEffect } from "react";
 import { RPH, RPW, phoneDevice } from "@utils/dimensions"
 import { appStyle } from "@styles/appStyle"
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 
 export default function HorizontalMenu({ data, menuBelow, func, name, chosenItem, setChosenItem, categoryType, countProp, length }) {
+
+    const router  = useRouter()
 
     const dataArray = Array.isArray(data) ? data :
         length ? Object.values(data).sort((a, b) => b[countProp].length - a[countProp].length) :
@@ -67,15 +69,15 @@ const styles = StyleSheet.create({
     flatlist: {
         minHeight: appStyle.secondHeaderHeight,
         maxHeight: appStyle.secondHeaderHeight,
+        width : "100%",
         minWidth: RPW(100),
         backgroundColor: appStyle.pageBody.backgroundColor
     },
     flatlistBorderBottom: {
-        borderBottomColor: appStyle.lightGrey,
-        borderBottomWidth: phoneDevice ? 0.5 : 1.5
+        ...appStyle.secondHeaderBorderBottom,
     },
     itemBtn: {
-        marginLeft: phoneDevice ? RPW(3.5) : 34,
+        marginLeft: appStyle.secondHeaderHorizPadd,
         minHeight: "100%",
         justifyContent: "center",
     },
@@ -88,9 +90,7 @@ const styles = StyleSheet.create({
         paddingTop: phoneDevice ? 5 : 7,
     },
     itemText: {
-        color: appStyle.strongBlack,
-        fontSize: phoneDevice ? RPW(4.15) : 30,
-        lineHeight: phoneDevice ? RPW(5) : 35,
+        ...appStyle.secondHeaderText,
     },
     unselectedItemText: {
         fontWeight: "400",

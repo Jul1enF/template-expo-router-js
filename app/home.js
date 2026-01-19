@@ -1,4 +1,4 @@
-import { router } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, StatusBar } from 'react-native';
 
 // FOR HIDING SPLASH SCREEN WHEN PAGE IS LOADED 
@@ -9,6 +9,7 @@ import { RPH, RPW, phoneDevice } from "@utils/dimensions"
 import { appStyle } from '@styles/appStyle';
 
 export default function HomePage() {
+  const router  = useRouter()
 
   // FOR HIDING SPLASH SCREEN WHEN PAGE IS LOADED 
   useEffect(() => {
@@ -31,7 +32,6 @@ export default function HomePage() {
 const styles = StyleSheet.create({
   body: {
     ...appStyle.pageBody,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   pageTitle: {
