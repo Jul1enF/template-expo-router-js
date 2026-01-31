@@ -10,15 +10,14 @@ import { appStyle } from '@styles/appStyle';
 
 export default function Tab1Page() {
   const [modalVisible, setModalVisible] = useState(false)
-  const [sectionsArray, setSectionsArray] = useState([
-    { sectionName: "Accueil", link: "/home" },
+  const sectionsArray = [
+    { sectionName: "Accueil", link: "/" },
     { sectionName: "Tab 1 Test", link: "/tab1" },
-    { sectionName: "Accueil 2", link: "/home2" },
     { sectionName: "Test 2", link: "/tab1" },
     { sectionName: "Se connecter / S'inscrire", link: "/login", func: () => console.log("FUNC !") },
     { sectionName: "Tab 1", link: "/tab1" },
     { sectionName: "Tab 2", link: "/tab2" },
-  ])
+  ]
  
   const [selectedSection, setSelectedSection] = useState(sectionsArray[0].sectionName)
 

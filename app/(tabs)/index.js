@@ -6,7 +6,7 @@ import { appStyle } from '@styles/appStyle';
 export default function Home2Page() {
   return (
     <View style={styles.container}>
-      <Text>Home 2 !</Text>
+      <Text>Home !</Text>
     </View>
   );
 }

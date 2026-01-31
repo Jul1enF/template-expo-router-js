@@ -59,6 +59,10 @@ export default function TabsLayout() {
 
       })}
     >
+      <Tabs.Screen name="index" options={{
+        tabBarItemStyle: { display: "none" },
+        title: "Accueil",
+      }} />
       <Tabs.Screen name="tab1" options={{
         title: "Tab 1"
       }} />
