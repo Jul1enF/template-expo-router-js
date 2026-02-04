@@ -8,11 +8,11 @@ const { regularText } = fontsStyle
 const regularItemWidth = phoneDevice ? RPW(67) : 510
 const regularItemHeight = phoneDevice ? RPW(9) : 55
 const regularItemBorderRadius = phoneDevice ? RPW(2.5) : 18
+const regularItemVertPadding = phoneDevice ? RPW(1.8) : 10
 
-const mediumItemHeight = phoneDevice ? RPW(10.8) : 68
-
-const largeItemWidth = phoneDevice ? RPW(92) : 700
+const largeItemWidth = phoneDevice ? RPW(92) : Math.min(700, RPW(92), RPH(92)) // small android tablets can be smaller than 700 dp
 const largeItemHeight = phoneDevice ? RPW(12) : 78
+const largeItemVertPadding = phoneDevice ? RPW(2.5) : 19
 
 const regularHorizontalPadding = phoneDevice ? RPW(3) : 20
 const cardHorizontalPadding = phoneDevice ? RPW(5) : 30
@@ -35,26 +35,40 @@ const card = {
     marginTop: largeMarginTop,
     alignItems: "center",
     width: (cardHorizontalPadding * 2) + regularItemWidth,
+    maxWidth: "100%",
     backgroundColor: darkGrey,
 }
 
 const largeCard = {
     ...card,
-    width : largeItemWidth,
+    width: largeItemWidth,
+    maxWidth: "100%",
     paddingBottom: phoneDevice ? RPW(12) : 70,
 }
 
 const regularItem = {
-    height: regularItemHeight,
+    minHeight: regularItemHeight,
+    paddingTop: regularItemVertPadding,
+    paddingBottom: regularItemVertPadding,
     width: regularItemWidth,
+    maxWidth: "100%",
     borderRadius: regularItemBorderRadius,
     marginTop: regularMarginTop,
     paddingHorizontal: regularHorizontalPadding,
 }
 
+const mediumItemHeight = {
+    minHeight: phoneDevice ? RPW(10.8) : 68,
+    paddingTop : phoneDevice ? RPW(2) : 14,
+    paddingBottom : phoneDevice ? RPW(2) : 14,
+}
+
 const largeItem = {
-    height: largeItemHeight,
+    minHeight: largeItemHeight,
+    paddingTop: largeItemVertPadding,
+    paddingBottom: largeItemVertPadding,
     width: largeItemWidth,
+    maxWidth: "100%",
     borderRadius: regularItemBorderRadius,
     marginTop: regularMarginTop,
     paddingHorizontal: regularHorizontalPadding,
@@ -62,28 +76,28 @@ const largeItem = {
 
 const largeCardItem = {
     ...largeItem,
-    width : "100%",
+    width: largeCard.width - (cardHorizontalPadding * 2),
+    maxWidth: "100%",
 }
 
-const inputVertPadding = {
-    paddingBottom: 0,
-    paddingTop: 0,
-}
 
 const lightGreyBorder = {
     borderColor: lightGrey,
     borderWidth: phoneDevice ? 1.2 : 1.8,
 }
 
+const inputIconSize = phoneDevice ? RPW(5.2) : 35
 
 
+
+
+// EXPORT
 export const componentsStyle = {
     // Main sizes of the app
     headerHeight: phoneDevice ? RPW(16) : 105,
-    tabBarHeight: phoneDevice ? RPW(18) : 90,
+    headerHorizPadd: phoneDevice ? RPW(4) : 30,
     secondHeaderHeight: phoneDevice ? RPW(10) : 62,
-    secondHeaderHorizPadd: phoneDevice ? RPW(4) : 30,
-    inputIconSize: phoneDevice ? RPW(5.2) : 35,
+    tabBarHeight: phoneDevice ? RPW(18) : 90,
 
 
     // Components Style
@@ -97,29 +111,36 @@ export const componentsStyle = {
     input: {
         base: {
             ...regularItem,
-            ...inputVertPadding,
             ...lightGreyBorder,
             ...regularText,
+            textAlign :"left",
         },
         baseLarge: {
             ...largeItem,
-            ...inputVertPadding,
             ...lightGreyBorder,
             ...regularText,
+            textAlign :"left",
         },
-        baseLargeCard : {
+        baseLargeCard: {
             ...largeCardItem,
-             ...inputVertPadding,
             ...lightGreyBorder,
             ...regularText,
-            fontWeight : "700",
+            fontWeight: "700",
+            textAlign :"left",
         },
         withIcon: {
-            width: "90%",
-            height: "100%",
-            ...regularText,
-            ...inputVertPadding,
+            paddingRight: inputIconSize * 1.8,
+            textAlign :"left",
         }
+    },
+    inputIconContainer: {
+        position: "absolute",
+        height: "100%",
+        right: 0,
+        paddingRight : regularHorizontalPadding,
+        width: inputIconSize * 1.8,
+        justifyContent: "center",
+        alignItems: "flex-end",
     },
     button: {
         alignItems: "center",
@@ -163,5 +184,5 @@ export const componentsStyle = {
     card,
     largeCard,
 
-    inputVertPadding,
+    inputIconSize,
 }

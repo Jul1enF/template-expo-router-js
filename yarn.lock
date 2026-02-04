@@ -4097,6 +4097,11 @@ react-native-modal@^13.0.1:
   dependencies:
     react-native-animatable "1.4.0"
 
+react-native-restart-newarch@^1.0.85:
+  version "1.0.85"
+  resolved "https://registry.yarnpkg.com/react-native-restart-newarch/-/react-native-restart-newarch-1.0.85.tgz#cc3143203832b58cc425d0d6d6c9ab1d61d25a39"
+  integrity sha512-oanl4m0aI9wI91F0Lc1xEK3zM+hs8NK1PBQPnf4XZjrYWsVahdWX6gYdTNhDpR8ekpBHSXkBPr7meGHwfHfNKQ==
+
 react-native-safe-area-context@~5.6.0:
   version "5.6.2"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-5.6.2.tgz#283e006f5b434fb247fcb4be0971ad7473d5c560"

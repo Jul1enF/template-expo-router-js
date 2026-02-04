@@ -73,13 +73,14 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
+        width : "100%",
     },
     menuIconContainer: {
         width: "15%",
         height: "100%",
         alignItems: "flex-start",
         justifyContent: "center",
-        paddingLeft: phoneDevice ? RPW(4) : 30,
+        paddingLeft: appStyle.headerHorizPadd,
     },
     titleContainer: {
         width: "70%",
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     title: {
-        fontSize: phoneDevice ? RPW(8) : 55,
+        fontSize: phoneDevice ? RPW(8) : 46,
         color: appStyle.darkWhite,
         letterSpacing: phoneDevice ? 1.5 : 4,
         fontWeight: "600",
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
         height: "100%",
         alignItems: "flex-end",
         justifyContent: "center",
-        paddingRight: phoneDevice ? RPW(4) : 30,
+        paddingRight: appStyle.headerHorizPadd,
     },
     icon: {
         color: appStyle.darkWhite,
