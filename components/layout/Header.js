@@ -21,7 +21,8 @@ export default function Header({appObsolete}) {
     const [menuVisible, setMenuVisible] = useState(false)
 
     const segments = useSegments();
-    const tabBar = segments[0] === "(tabs)"
+    // Remove !segments.length below if the entry point is not in <Tabs> !!!!!
+    const tabBar = !segments.length || segments[0] === "(tabs)" 
 
     // Hook for the height/width of the screen (for tablets orientation changes), the height available and detection of android insetTop to use as offset
 
